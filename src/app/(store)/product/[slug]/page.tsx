@@ -26,14 +26,14 @@ export const generateMetadata = async ({params}: {params: {slug: string}}): Prom
 }
 
 // makes next generate static pages on build execution
-export const generateStaticParams = async () => {
-  const response = await api('/products/featured')
-  const products: Product[] = await response.json()
+// export const generateStaticParams = async () => {
+//   const response = await api('/products/featured')
+//   const products: Product[] = await response.json()
 
-  return products.map(product => {
-    return {slug: product.slug}
-  })
-}
+//   return products.map(product => {
+//     return {slug: product.slug}
+//   })
+// }
 
 const ProductPage = async ({params}: {params: {slug: string}}) => {
   const product = await getProduct(params.slug)
