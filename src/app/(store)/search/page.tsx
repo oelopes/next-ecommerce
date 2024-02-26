@@ -4,7 +4,6 @@ import { redirect } from "next/navigation"
 
 import { api } from "@/data/api"
 import { Product } from "@/data/types/product"
-import { env } from "@/env"
 
 const searchProducts = async(query: string): Promise<Product[]> => {
   const response = await api(`/products/search?q=${query}`, {
@@ -17,10 +16,6 @@ const searchProducts = async(query: string): Promise<Product[]> => {
 }
 
 const Search = async ({searchParams}: {searchParams: {q: string}} ) => {
-  if(!env.NEXT_PUBLIC_API_BASE_URL) {
-    return null
-  }
-
   const {q: query} = searchParams
   
   if(!query) {

@@ -4,7 +4,6 @@ import Link from "next/link"
 
 import { api } from "@/data/api"
 import { Product } from "@/data/types/product"
-import { env } from "@/env"
 
 export const metadata: Metadata = {
   title: 'Home'
@@ -24,10 +23,6 @@ const getFeaturedProducts = async (): Promise<Product[]> => {
 }
 
 const Home = async () => {
-  if(!env.NEXT_PUBLIC_API_BASE_URL) {
-    return null
-  }
-
   const [highlightedProduct, ...otherProducts] = await getFeaturedProducts()
 
 
