@@ -1,9 +1,10 @@
-import { api } from "@/data/api"
-import { Product } from "@/data/types/product"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
+import { api } from "@/data/api"
+import { Product } from "@/data/types/product"
+import { env } from "@/env"
 
 export const metadata: Metadata = {
   title: 'Home'
@@ -23,7 +24,12 @@ const getFeaturedProducts = async (): Promise<Product[]> => {
 }
 
 const Home = async () => {
+  if(!env.NEXT_PUBLIC_API_BASE_URL) {
+    return null
+  }
+
   const [highlightedProduct, ...otherProducts] = await getFeaturedProducts()
+
 
   return (
     <div className="grid grid-cols-9 grid-rows-6 gap-6 max-h-[860px]">
