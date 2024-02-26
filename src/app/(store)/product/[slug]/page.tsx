@@ -5,6 +5,7 @@ import AddToCartButton from "@/components/AddToCartButton"
 
 import { api } from "@/data/api"
 import { Product } from "@/data/types/product"
+import { env } from "@/env"
 
 
 const getProduct = async (slug: string): Promise<Product> => {
@@ -36,6 +37,10 @@ export const generateMetadata = async ({params}: {params: {slug: string}}): Prom
 // }
 
 const ProductPage = async ({params}: {params: {slug: string}}) => {
+  if(!env.APP_URL) {
+    return null
+  }
+
   const product = await getProduct(params.slug)
 
   return (

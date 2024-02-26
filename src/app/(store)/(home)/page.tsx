@@ -4,6 +4,7 @@ import Link from "next/link"
 
 import { api } from "@/data/api"
 import { Product } from "@/data/types/product"
+import { env } from "@/env"
 
 export const metadata: Metadata = {
   title: 'Home'
@@ -23,8 +24,11 @@ const getFeaturedProducts = async (): Promise<Product[]> => {
 }
 
 const Home = async () => {
-  const [highlightedProduct, ...otherProducts] = await getFeaturedProducts()
+  if(!env.APP_URL) {
+    return null
+  }
 
+  const [highlightedProduct, ...otherProducts] = await getFeaturedProducts()
 
   return (
     <div className="grid grid-cols-9 grid-rows-6 gap-6 max-h-[860px]">
