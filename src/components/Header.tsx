@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from "next/link"
+import { Suspense } from 'react'
 import CartWidget from './CartWidget'
 import SearchForm from './SearchForm'
 
@@ -11,7 +12,9 @@ const Header = () => {
           nextEcommerce
         </Link>
 
-        <SearchForm />
+        <Suspense fallback={null}> 
+          <SearchForm />
+        </Suspense>
       </div>
 
       <div className="flex items-center gap-4">
