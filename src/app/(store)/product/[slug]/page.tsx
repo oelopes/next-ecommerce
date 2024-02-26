@@ -1,7 +1,10 @@
-import { api } from "@/data/api"
-import { Product } from "@/data/types/product"
 import { Metadata } from "next"
 import Image from "next/image"
+
+import AddToCartButton from "@/components/AddToCartButton"
+
+import { api } from "@/data/api"
+import { Product } from "@/data/types/product"
 
 
 const getProduct = async (slug: string): Promise<Product> => {
@@ -85,9 +88,7 @@ const ProductPage = async ({params}: {params: {slug: string}}) => {
           </div>
         </div>
 
-        <button type="button" className="flex items-center justify-center h-12 mt-8 rounded-full bg-emerald-600 font-semibold">
-            Adicionar ao carrinho
-          </button>
+        <AddToCartButton productId={product.id}/>
       </div>
     </div>
   )
